@@ -32,8 +32,8 @@ def load_version():
     d.__file__ = filename
 
     try:
-        execfile(filename, d.__dict__)
-    except IOError, e:
+        exec(compile(open(filename).read(), filename, 'exec'), d.__dict__)
+    except IOError as e:
         e.strerror = 'Unable to load the version number (%s)' % e.strerror
         raise
 
