@@ -1266,11 +1266,11 @@ class compoundType(anyType):
     def _asdict(self, item=None, encoding=Config.dict_encoding):
         if item is not None:
             if type(item) in (str,):
-                item = item.encode(encoding)
+                item = item
             return self.__dict__[item]
         else:
             retval = {}
-            def fun(x): retval[x.encode(encoding)] = self.__dict__[x]
+            def fun(x): retval[x] = self.__dict__[x]
 
             if hasattr(self, '_keyord'):
                 list(map( fun, self._keyord))
