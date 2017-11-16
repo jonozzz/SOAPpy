@@ -41,14 +41,12 @@
 """
 
 ident = '$Id: Errors.py 921 2005-02-15 16:32:23Z warnes $'
-from version import __version__
-
-import exceptions
+from .version import __version__
 
 ################################################################################
 # Exceptions
 ################################################################################
-class Error(exceptions.Exception):
+class Error(Exception):
     def __init__(self, msg):
         self.msg = msg
     def __str__(self):
@@ -74,6 +72,6 @@ class HTTPError(Error):
     def __call___(self):
         return (self.code, self.msg, )
 
-class UnderflowError(exceptions.ArithmeticError):
+class UnderflowError(ArithmeticError):
     pass
 

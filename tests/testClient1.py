@@ -27,18 +27,18 @@ def kill():
 def server1():
     """start a SOAP server on localhost:8000"""
     
-    print "Starting SOAP Server...",
+    print("Starting SOAP Server...", end=' ')
     server = SOAPpy.Server.SOAPServer(addr=('127.0.0.1', 8000))
     server.registerFunction(echoDateTime)
     server.registerFunction(echo)
     server.registerFunction(kill)
-    print "Done."
+    print("Done.")
     
     global quit
     while not quit: 
         server.handle_request()
     quit = 0
-    print "Server shut down."
+    print("Server shut down.")
 
 class ClientTestCase(unittest.TestCase):
 
@@ -55,24 +55,24 @@ class ClientTestCase(unittest.TestCase):
         connected = False
         server = None
         while not connected  and time.time() - start < self.startup_timeout:
-            print "Trying to connect to the SOAP server...",
+            print("Trying to connect to the SOAP server...", end=' ')
             try:
                 server = SOAPpy.Client.SOAPProxy('127.0.0.1:8000')
                 server.echo('Hello World')
-            except socket.error, e:
-                print "Failure:", e
+            except socket.error as e:
+                print("Failure:", e)
                 time.sleep(0.5)
             else:
                 connected = True
                 self.server = server
-                print "Success."
+                print("Success.")
 
         if not connected: raise 'Server failed to start.'
 
     def tearDown(self):
         '''This is run once after each unit test.'''
 
-        print "Trying to shut down SOAP server..."
+        print("Trying to shut down SOAP server...")
         if self.server is not None:
             self.server.kill()
             time.sleep(5)

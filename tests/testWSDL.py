@@ -61,7 +61,7 @@ class IntegerArithmenticTestCase(unittest.TestCase):
 
         wsdl = SOAPpy.WSDL.Proxy(self.wsdlstr1, http_proxy=http_proxy)
         self.assertEquals(len(wsdl.methods), 1)
-        method = wsdl.methods.values()[0]
+        method = list(wsdl.methods.values())[0]
         self.assertEquals(method.methodName, 'getTemp')
         self.assertEquals(method.namespace, 'urn:xmethods-Temperature')
         self.assertEquals(method.location, 
@@ -81,7 +81,7 @@ class IntegerArithmenticTestCase(unittest.TestCase):
 
         wsdl = SOAPpy.WSDL.Proxy(fname, http_proxy=http_proxy)
         self.assertEquals(len(wsdl.methods), 1)
-        method = wsdl.methods.values()[0]
+        method = list(wsdl.methods.values())[0]
         self.assertEquals(method.methodName, 'getTemp')
         self.assertEquals(method.namespace, 'urn:xmethods-Temperature')
         self.assertEquals(method.location, 
@@ -92,7 +92,7 @@ class IntegerArithmenticTestCase(unittest.TestCase):
 
         wsdl = SOAPpy.WSDL.Proxy('http://www.xmethods.net/sd/2001/TemperatureService.wsdl', http_proxy=http_proxy)
         self.assertEquals(len(wsdl.methods), 1)
-        method = wsdl.methods.values()[0]
+        method = list(wsdl.methods.values())[0]
         self.assertEquals(method.methodName, 'getTemp')
         self.assertEquals(method.namespace, 'urn:xmethods-Temperature')
         self.assertEquals(method.location, 
@@ -104,7 +104,7 @@ class IntegerArithmenticTestCase(unittest.TestCase):
         zip = '01072'
         proxy = SOAPpy.WSDL.Proxy(self.wsdlstr1, http_proxy=http_proxy)
         temp = proxy.getTemp(zip)
-        print 'Temperature at', zip, 'is', temp
+        print('Temperature at', zip, 'is', temp)
 
 
 if __name__ == '__main__':
