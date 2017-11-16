@@ -133,7 +133,7 @@ class SOAPConfig:
 
             # Client SSL support if socket.ssl available
             try:
-                from socket import ssl
+                import ssl
                 d['SSLclient'] = 1
             except:
                 d['SSLclient'] = 0
