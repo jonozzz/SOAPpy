@@ -456,7 +456,9 @@ class SOAPBuilder:
                 typename = type(sample).__name__
 
                 # For Python 2.2+
-                if type(sample) == bytes: typename = 'string'
+                if type(sample) == bytes:
+                    data = [x.decode() for x in data]
+                    typename = 'string'
 
                 # HACK: unicode is a SOAP string
                 if type(sample) == str: typename = 'string'
