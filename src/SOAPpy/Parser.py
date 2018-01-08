@@ -947,7 +947,7 @@ class SOAPParser(xml.sax.handler.ContentHandler):
         if t[0] in NS.XSD_L:
             if t[1] in ("base64", "base64Binary"):
                 if d:
-                    return base64.decodestring(d)
+                    return base64.decodestring(d.encode())
                 else:
                     return ''
             if t[1] == "hexBinary":
