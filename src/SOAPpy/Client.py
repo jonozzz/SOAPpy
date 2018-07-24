@@ -207,7 +207,7 @@ class HTTPTransport:
         # if user is not a user:passwd format
         #    we'll receive a failure from the server. . .I guess (??)
         if addr.user != None:
-            val = base64.encodestring(urllib.parse.unquote_plus(addr.user).encode())
+            val = base64.encodebytes(urllib.parse.unquote_plus(addr.user).encode())
             r.putheader('Authorization', 'Basic ' + val.decode().strip())
 
         # This fixes sending either "" or "None"

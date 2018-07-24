@@ -36,7 +36,7 @@
 ident = '$Id: SOAPBuilder.py 1498 2010-03-12 02:13:19Z pooryorick $'
 from .version import __version__
 
-import cgi
+import html
 from wstools.XMLname import toXMLname, fromXMLname
 
 # SOAPpy modules
@@ -310,7 +310,7 @@ class SOAPBuilder:
         try: data = obj._marshalData()
         except:
             if (obj_type != "string"): # strings are already encoded
-                data = cgi.escape(str(obj))
+                data = html.escape(str(obj))
             else:
                 data = obj
 
@@ -363,7 +363,7 @@ class SOAPBuilder:
         try: data = obj._marshalData()
         except: data = obj
 
-        self.out.append(self.dumper(None, "string", cgi.escape(data), tag,
+        self.out.append(self.dumper(None, "string", html.escape(data), tag,
                                     typed, ns_map, self.genroot(ns_map), id))
 
     dump_str = dump_string # For Python 2.2+
